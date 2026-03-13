@@ -1,11 +1,14 @@
 <script setup lang="ts"></script>
 
 <template>
-  <h1>Yay! You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <meta>
+    <title>tada</title>
+    <meta name="description" content="A marketplace">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  </meta>
+
+  <h1>Tada</h1>
 </template>
 
 <style scoped></style>
