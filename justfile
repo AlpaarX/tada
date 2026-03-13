@@ -1,15 +1,15 @@
-service := "docker compose"
+service := "podman"
 
 build:
-    {{service}} build
+    {{service}} compose build
 
 build-dev:
-    {{service}} -f docker-compose.yml -f docker-compose.dev.yml up --build app
+    {{service}} compose -f docker-compose.yml -f docker-compose.dev.yml up --build app
 
 up:
-    {{service}} up -d
+    {{service}} compose up -d
 
-setup: build up
+setup: build-dev up
 
 bash:
-    docker run -it --rm --entrypoint bash tada_app
+    {{service}} run -it --rm --entrypoint bash tada_app
