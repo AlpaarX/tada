@@ -1,4 +1,4 @@
-service := "podman"
+service := "docker"
 
 build:
     {{service}} compose build
