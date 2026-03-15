@@ -1,17 +1,28 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { getItems } from '@/api/items';
+
+import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router';
-import items from '@/items.json';
+
 const route = useRoute();
-const id = computed(() => Number(route.params.id));
-const item = computed(() => items.find((x) => x.id === id.value));
+const item = ref(null);
+onMounted(async () => {
+  const id = route.params.id;
+  try {
+    const items = await getItems();
+    item.value = items.find((i: { id: number }) => i.id === Number(id));
+  } catch (e) {
+    console.error(e);
+  }
+})
 
 </script>
 
 <template>
   <div v-if="item" class="max-w-2xl mx-auto p-4">
-    <h1 class="text-3xl font-bold mb-4">{{ item.name }}</h1>
+    <h1 class="text-3xl font-bold mb-4">{{ item.title }}</h1>
     <p class="text-gray-700">{{ item.description }}</p>
+    <p class="text-gray-900 font-bold mt-4">{{ item.price }}円</p>
   </div>
   <div v-else class="text-center p-4">
     <p class="text-gray-500">アイテムが見つかりませんでした。</p>

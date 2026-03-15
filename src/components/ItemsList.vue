@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import ItemCard from './ItemCard.vue'
-import items from '@/items.json';
+import { defineProps } from 'vue';
+
+const props = defineProps<{
+  items: Array<{ id: number; title: string; description: string; price: number }>;
+  loading: boolean;
+  error: string | null;
+}>();
 </script>
 
 <template>
